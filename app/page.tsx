@@ -42,11 +42,9 @@ export default function Home() {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
-    // Global Click Sound (Retro 8-bit Coin/Beep)
     const handleGlobalClick = () => {
       const ctx = getAudioContext();
       if (!ctx) return;
-      
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = "square";
@@ -54,7 +52,6 @@ export default function Home() {
       osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.05);
       gain.gain.setValueAtTime(0.03, ctx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
-      
       osc.connect(gain).connect(ctx.destination);
       osc.start();
       osc.stop(ctx.currentTime + 0.1);
@@ -69,13 +66,14 @@ export default function Home() {
     };
   }, []);
 
-  // ANIMASI SCROLL (Berulang / once: false)
-  const fadeUp = { hidden: { opacity: 0, y: 40, filter: "blur(8px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut" } } };
-  const popBlur = { hidden: { opacity: 0, scale: 0.8, filter: "blur(15px)", y: 40 }, visible: { opacity: 1, scale: 1, filter: "blur(0px)", y: 0, transition: { duration: 0.8, ease: "easeOut", type: "spring", bounce: 0.4 } } };
-  const slideBlurLeft = { hidden: { opacity: 0, x: -60, filter: "blur(10px)" }, visible: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut" } } };
-  const slideBlurRight = { hidden: { opacity: 0, x: 60, filter: "blur(10px)" }, visible: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut" } } };
-  const staggerContainer = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.15 } } };
+  // ANIMASI DENGAN TIPE "ANY" AGAR BUILD SUKSES
+  const fadeUp: any = { hidden: { opacity: 0, y: 40, filter: "blur(8px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut" } } };
+  const popBlur: any = { hidden: { opacity: 0, scale: 0.8, filter: "blur(15px)", y: 40 }, visible: { opacity: 1, scale: 1, filter: "blur(0px)", y: 0, transition: { duration: 0.8, ease: "easeOut", type: "spring", bounce: 0.4 } } };
+  const slideBlurLeft: any = { hidden: { opacity: 0, x: -60, filter: "blur(10px)" }, visible: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut" } } };
+  const slideBlurRight: any = { hidden: { opacity: 0, x: 60, filter: "blur(10px)" }, visible: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut" } } };
+  const staggerContainer: any = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.15 } } };
 
+  // ... (Data lainnya tetap sama)
   const technicalProficiency = [
     { name: "Python / Data Science & ML", percentage: 95, color: "bg-[#3b82f6]" },
     { name: "Laravel / PHP", percentage: 92, color: "bg-[#8b5cf6]" },
@@ -93,9 +91,9 @@ export default function Home() {
   ];
 
   const workExperience = [
-    { year: "2025 - Present", title: "Operator SIKS-NG", company: "Pemerintah Pekon Gadingrejo", description: "Mengelola dan memvalidasi basis data kesejahteraan sosial masyarakat secara real-time. Bertanggung jawab atas integrasi data untuk memastikan distribusi program pemerintah yang akurat dan transparan, serta menginisiasi pengembangan sistem layanan digital mandiri (SIPADES) untuk efisiensi birokrasi desa." },
-    { year: "2024 - 2025", title: "IT Support & Operator SID", company: "Pemerintah Pekon Gadingrejo", description: "Memastikan keandalan infrastruktur IT desa dan mengelola operasional Sistem Informasi Desa (SID). Mengarahkan strategi komunikasi digital melalui manajemen media sosial resmi, serta merancang dokumen administratif esensial untuk memfasilitasi kolaborasi dengan perangkat desa, kelompok masyarakat (Pokmas), dan program mahasiswa (KKN)." },
-    { year: "2023 - 2024", title: "Freelance Developer", company: "Multiple Projects", description: "Merancang dan mengembangkan berbagai aplikasi web responsif serta sistem manajemen basis data menggunakan tumpukan teknologi modern seperti PHP, Laravel, dan MySQL. Selain pengembangan web, secara aktif membangun dan menguji algoritma otomatisasi trading (Expert Advisor) berbasis MQL5." }
+    { year: "2025 - Present", title: "Operator SIKS-NG", company: "Pemerintah Pekon Gadingrejo", description: "Mengelola dan memvalidasi basis data kesejahteraan sosial masyarakat secara real-time. Bertanggung jawab atas integrasi data untuk memastikan distribusi program pemerintah yang akurat dan transparan." },
+    { year: "2024 - 2025", title: "IT Support & Operator SID", company: "Pemerintah Pekon Gadingrejo", description: "Memastikan keandalan infrastruktur IT desa dan mengelola operasional Sistem Informasi Desa (SID). Mengarahkan strategi komunikasi digital melalui manajemen media sosial resmi." },
+    { year: "2023 - 2024", title: "Freelance Developer", company: "Multiple Projects", description: "Merancang dan mengembangkan berbagai aplikasi web responsif serta sistem manajemen basis data menggunakan tumpukan teknologi modern. Membangun dan menguji algoritma otomatisasi trading (Expert Advisor) berbasis MQL5." }
   ];
 
   const awards = [
