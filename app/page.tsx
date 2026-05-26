@@ -3,7 +3,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Mail, Phone, ChevronRight, Sparkles, MessageSquare, User, Trophy, Award, Video, Heart } from "lucide-react";
+// PERBAIKAN: Menambahkan Menu dan X di sini
+import { Menu, X, Mail, Phone, ChevronRight, Sparkles, MessageSquare, User, Trophy, Award, Video, Heart } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 
 export default function Home() {
@@ -68,7 +69,6 @@ export default function Home() {
     };
   }, []);
 
- // Gunakan import Variants dari framer-motion untuk mendefinisikan tipe data dengan benar
   const fadeUp = { 
     hidden: { opacity: 0, y: 40, filter: "blur(8px)" }, 
     visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut" } } 
@@ -93,7 +93,7 @@ export default function Home() {
     hidden: { opacity: 0 }, 
     visible: { opacity: 1, transition: { staggerChildren: 0.15 } } 
   };
-  // ... (Data lainnya tetap sama)
+
   const technicalProficiency = [
     { name: "Python / Data Science & ML", percentage: 95, color: "bg-[#3b82f6]" },
     { name: "Laravel / PHP", percentage: 92, color: "bg-[#8b5cf6]" },
@@ -122,6 +122,7 @@ export default function Home() {
     { title: "Bootcamp Coding Certificate", desc: "Diselenggarakan oleh ID Network", icon: Award, color: "text-[#3b82f6]", bg: "bg-[#3b82f6]/10" },
     { title: "Workshop IoT Certificate", desc: "Diselenggarakan oleh ID Network", icon: Award, color: "text-[#10b981]", bg: "bg-[#10b981]/10" },
     { title: "Juara 2 FLS2N", desc: "Bidang Film Dokumenter", icon: Video, color: "text-[#f59e0b]", bg: "bg-[#f59e0b]/10" },
+    { title: "UDAH PERNAH IMO 110", desc: "TOP GLOBAL MINOTAUR", icon: Trophy, color: "text-[#d946ef]", bg: "bg-[#d946ef]/10" },
   ];
 
   return (
@@ -129,11 +130,12 @@ export default function Home() {
       
       {/* GLOBAL FIXED HUD: PIXEL ADVENTURE RPG GAME */}
       <motion.div 
-  variants={fadeUp} 
-  initial="hidden" 
-  whileInView="visible" 
-  viewport={{ once: false }}
->
+        variants={fadeUp} 
+        initial="hidden" 
+        whileInView="visible" 
+        viewport={{ once: false }}
+        className="fixed bottom-6 right-6 w-[260px] bg-[#05050a]/90 backdrop-blur-md border-[2px] border-[#06b6d4]/40 hover:border-[#d946ef] rounded-lg shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_20px_rgba(217,70,239,0.4)] z-[90] hidden lg:block overflow-hidden transition-all duration-300"
+      >
         <div className="flex justify-between items-center bg-[#06b6d4]/10 p-2 border-b border-[#06b6d4]/40">
           <span className="text-[10px] font-mono text-[#06b6d4] font-bold tracking-widest">LVL: 99</span>
           <span className="text-[10px] font-mono text-white animate-pulse tracking-widest">QUEST ACTIVE</span>
@@ -141,30 +143,24 @@ export default function Home() {
         
         {/* Arena Petualangan */}
         <div className="relative h-24 w-full bg-[#0a0f1a] overflow-hidden flex flex-col justify-end border-b-2 border-[#3b82f6]/50">
-          {/* Awan Berjalan */}
           <motion.div animate={{ x: [0, -200] }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} className="absolute top-2 left-10 text-white/10 flex gap-12">
             <svg width="30" height="15" viewBox="0 0 30 15" fill="currentColor"><path d="M5,10 h5 v-5 h5 v-5 h5 v5 h5 v5 h5 v5 h-30 z"/></svg>
             <svg width="20" height="10" viewBox="0 0 30 15" fill="currentColor"><path d="M5,10 h5 v-5 h5 v-5 h5 v5 h5 v5 h5 v5 h-30 z"/></svg>
           </motion.div>
           
-          {/* Tanah/Rumput Bergerak (Efek berjalan) */}
           <motion.div animate={{ x: [0, -30] }} transition={{ duration: 0.5, repeat: Infinity, ease: "linear" }} className="w-[200%] h-2 bg-gradient-to-r from-[#10b981]/20 to-[#059669]/40 border-t border-[#10b981]/50 flex pattern-dots"></motion.div>
           
-          {/* Ksatria Pixel (Hero Walking) */}
           <motion.div 
             animate={{ y: [0, -4, 0] }} 
             transition={{ duration: 0.3, repeat: Infinity, ease: "linear" }}
             className="absolute bottom-2 left-6 text-[#06b6d4]"
           >
             <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32" className="drop-shadow-[0_0_5px_rgba(6,182,212,0.8)]">
-              {/* Pedang */}
               <path d="M17,4 h2 v10 h-2 z" className="text-[#f59e0b]" />
-              {/* Badan Ksatria */}
               <path d="M9,2 h4 v4 h-4 z M7,6 h8 v6 h-8 z M9,12 h2 v6 h-2 z M11,12 h2 v6 h-2 z M15,8 h4 v2 h-4 z" />
             </svg>
           </motion.div>
 
-          {/* Monster Slime (Enemy Approaching) */}
           <motion.div 
             animate={{ x: [250, -50], y: [0, -2, 0] }} 
             transition={{ x: { duration: 3.5, repeat: Infinity, ease: "linear" }, y: { duration: 0.4, repeat: Infinity, ease: "linear" } }}
@@ -172,13 +168,12 @@ export default function Home() {
           >
             <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" className="drop-shadow-[0_0_5px_rgba(217,70,239,0.8)]">
               <path d="M7,8 h10 v4 h-10 z M5,12 h14 v8 h-14 z M9,4 h6 v4 h-6 z" opacity="0.8" />
-              {/* Mata Slime */}
               <path d="M7,14 h2 v2 h-2 z M15,14 h2 v2 h-2 z" fill="#05050a" />
             </svg>
           </motion.div>
         </div>
 
-        {/* Status Bar (HP & EXP) */}
+        {/* Status Bar */}
         <div className="p-3 bg-[#05050a] flex justify-between items-center border-t border-white/5">
            <div className="w-[45%]">
              <div className="text-[8px] text-[#10b981] font-mono mb-1 tracking-wider">HP 999/999</div>
@@ -195,7 +190,7 @@ export default function Home() {
         </div>
       </motion.div>
 
-      {/* ANIMATED CUSTOM CURSOR */}
+      {/* ANIMATED CURSOR */}
       {isMounted && (
         <>
           <motion.div className="fixed top-0 left-0 w-8 h-8 border-[1.5px] border-[#06b6d4] rounded-full pointer-events-none z-[100] shadow-[0_0_10px_#06b6d4] hidden md:block" animate={{ x: mousePosition.x - 16, y: mousePosition.y - 16 }} transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.5 }} />
@@ -203,6 +198,7 @@ export default function Home() {
         </>
       )}
 
+      {/* PARTICLES */}
       <motion.div className="fixed inset-0 pointer-events-none z-0 overflow-hidden flex items-center justify-center" animate={{ x: isMounted ? (mousePosition.x - window.innerWidth / 2) * -0.02 : 0, y: isMounted ? (mousePosition.y - window.innerHeight / 2) * -0.02 : 0 }} transition={{ type: "spring", stiffness: 100, damping: 30 }}>
         <div className="absolute w-[800px] h-[800px] border border-white/5 rounded-full blur-[1px] opacity-50 scale-150"></div>
         <div className="absolute w-[1200px] h-[1200px] border border-white/5 rounded-full blur-[2px] opacity-30"></div>
@@ -211,11 +207,11 @@ export default function Home() {
         ))}
       </motion.div>
 
+      {/* NAVBAR */}
       <motion.nav initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.6 }} className="fixed top-0 w-full z-50 bg-[#05050a]/60 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <Link href="#home" className="text-xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-[#d946ef] to-[#06b6d4] cursor-none">Portfolio</Link>
           
-          {/* Menu Desktop */}
           <div className="hidden md:flex gap-6 text-sm font-medium text-gray-300">
             <Link href="#home" className="hover:text-white transition-colors cursor-none">Home</Link>
             <Link href="#about" className="hover:text-white transition-colors cursor-none">About</Link>
@@ -225,7 +221,6 @@ export default function Home() {
             <Link href="#contact" className="hover:text-white transition-colors cursor-none">Contact</Link>
           </div>
 
-          {/* Tombol Burger Mobile */}
           <button 
             className="md:hidden text-gray-300 hover:text-white transition-colors z-50"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -234,7 +229,6 @@ export default function Home() {
           </button>
         </div>
 
-        {/* Dropdown Menu Mobile */}
         <motion.div 
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: isMobileMenuOpen ? "auto" : 0, opacity: isMobileMenuOpen ? 1 : 0 }}
@@ -251,6 +245,7 @@ export default function Home() {
         </motion.div>
       </motion.nav>
 
+      {/* MAIN CONTENT */}
       <main id="home" className="relative min-h-screen flex flex-col items-center justify-center p-6 pt-20 z-10">
         <motion.div animate={{ x: isMounted ? (mousePosition.x - window.innerWidth / 2) * -0.05 : 0, y: isMounted ? (mousePosition.y - window.innerHeight / 2) * -0.05 : 0 }} transition={{ type: "spring", stiffness: 100, damping: 30 }} className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[700px] md:h-[400px] bg-[#d946ef]/15 rounded-full blur-[150px]"></div>
