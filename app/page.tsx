@@ -10,6 +10,7 @@ export default function Home() {
   const [particles, setParticles] = useState<{ id: number; size: number; left: number; top: number; duration: number; delay: number; color: string }[]>([]);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMounted, setIsMounted] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const audioCtxRef = useRef<AudioContext | null>(null);
 
@@ -212,7 +213,9 @@ export default function Home() {
 
       <motion.nav initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.6 }} className="fixed top-0 w-full z-50 bg-[#05050a]/60 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <Link href="#home" className="text-xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-[#d946ef] to-[#06b6d4] cursor-none">Narwhalz.Dev</Link>
+          <Link href="#home" className="text-xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-[#d946ef] to-[#06b6d4] cursor-none">Portfolio</Link>
+          
+          {/* Menu Desktop */}
           <div className="hidden md:flex gap-6 text-sm font-medium text-gray-300">
             <Link href="#home" className="hover:text-white transition-colors cursor-none">Home</Link>
             <Link href="#about" className="hover:text-white transition-colors cursor-none">About</Link>
@@ -221,7 +224,31 @@ export default function Home() {
             <Link href="#certifications" className="hover:text-white transition-colors cursor-none">Certifications</Link>
             <Link href="#contact" className="hover:text-white transition-colors cursor-none">Contact</Link>
           </div>
+
+          {/* Tombol Burger Mobile */}
+          <button 
+            className="md:hidden text-gray-300 hover:text-white transition-colors z-50"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
+
+        {/* Dropdown Menu Mobile */}
+        <motion.div 
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: isMobileMenuOpen ? "auto" : 0, opacity: isMobileMenuOpen ? 1 : 0 }}
+          className="md:hidden overflow-hidden bg-[#05050a]/95 backdrop-blur-xl border-b border-white/5"
+        >
+          <div className="flex flex-col px-6 py-6 gap-6 text-sm font-medium text-gray-300">
+            <Link href="#home" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition-colors">Home</Link>
+            <Link href="#about" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition-colors">About</Link>
+            <Link href="#skills" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition-colors">Skills</Link>
+            <Link href="#experience" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition-colors">Experience</Link>
+            <Link href="#certifications" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition-colors">Certifications</Link>
+            <Link href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition-colors">Contact</Link>
+          </div>
+        </motion.div>
       </motion.nav>
 
       <main id="home" className="relative min-h-screen flex flex-col items-center justify-center p-6 pt-20 z-10">
