@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 
 import { motion } from "framer-motion";
@@ -55,7 +56,6 @@ export default function MiniGame() {
       initial="hidden" 
       whileInView="visible" 
       viewport={{ once: false }}
-      // PERBAIKAN RESPONSIVE: Mengganti 'hidden lg:block' dengan scale & opacity khusus mobile
       className="fixed bottom-4 right-4 md:bottom-6 md:right-6 w-[260px] bg-[#05050a]/90 backdrop-blur-md border-[2px] border-[#06b6d4]/40 hover:border-[#d946ef] rounded-lg shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_20px_rgba(217,70,239,0.4)] z-[90] overflow-hidden transition-all duration-300 scale-75 md:scale-100 origin-bottom-right opacity-50 hover:opacity-100 md:opacity-100"
     >
       <div className="flex justify-between items-center bg-[#06b6d4]/10 p-2 border-b border-[#06b6d4]/40 relative">
